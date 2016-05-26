@@ -1,0 +1,7 @@
+---
+
+- include: my-enable-root-access.yaml
+
+- include: my-gradle.yaml
+
+- include: my-hipi.yaml

@@ -1,0 +1,7 @@
+--- 
+- name:	Install gradle on frontend node as root
+  hosts: frontendnodes
+  remote_user: root
+  become: yes
+  roles:
+    - gradle

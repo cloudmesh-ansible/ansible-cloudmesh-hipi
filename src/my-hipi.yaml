@@ -1,0 +1,23 @@
+---
+- name: Download and build hipi on frontendnodes for hadoop users
+  hosts: frontendnodes
+  remote_user: hadoop
+  tasks:
+  #- name: Change directory to hadoop home
+  #  shell: cd /home/hadoop
+  - name: Sanity check for repository
+    git: repo='https://github.com/uvagfx/hipi.git' dest='hipi' clone=no update=no
+  - name: Clone hipi
+    #shell: git clone https://github.com/uvagfx/hipi.git
+    git: repo='https://github.com/uvagfx/hipi.git' dest='hipi' clone=yes
+  - name: Change directory to hipi
+    shell: cd hipi
+  - name: Build hipi
+    shell: gradle
+  - name: Create folder structure for my project, copy and replace if file exists from src to frontend node
+    #shell: mkdir -p examples/pixelIntensity/src/main/java/org/hipi/examples
+    file: path=/home/hadoop/hipi/examples/pixelIntensity/src/main/java/org/hipi/examples state=directory
+  - copy: src=build.gradle dest=/home/hadoop/hipi/examples/pixelIntensity/build.gradle owner=hadoop mode=0644
+  - copy: src=settings.gradle dest=/home/hadoop/hipi/settings.gradle owner=hadoop mode=0644
+  - copy: src=PixelIntensity.java dest=/home/hadoop/hipi/examples/pixelIntensity/src/main/java/org/hipi/examples/PixelIntensity.java owner=hadoop mode=0644
+  - copy: src=buildAndLaunch.sh dest=/home/hadoop/buildAndLaunch.sh owner=hadoop mode=0644

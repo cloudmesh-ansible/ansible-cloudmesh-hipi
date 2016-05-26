@@ -1,0 +1,16 @@
+---
+# tasks file for gradle
+- name: Update apt cache
+  apt: 
+    update_cache: yes
+
+- name: Add gradle repository
+  apt_repository: 
+    repo: "{{ gradle_repo }}"
+    state: present
+
+- name: Install gradle 
+  apt: 
+    pkg: "{{ gradle_pkg }}"
+    state: latest 
+    update_cache: yes
