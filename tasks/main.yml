@@ -1,16 +1,9 @@
 ---
 # tasks file for ansible-cloudmesh-hipi
-- name: Update apt cache
-  apt: 
-    update_cache: yes
+- include: my-enable-root-access.yaml
 
-- name: Add gradle repository
-  apt_repository: 
-    repo: "{{ gradle_repo }}"
-    state: present
+- include: my-gradle.yaml
 
-- name: Install gradle 
-  apt: 
-    pkg: "{{ gradle_pkg }}"
-    state: latest 
-    update_cache: yes
+- include: my-hipi.yaml
+
+ 

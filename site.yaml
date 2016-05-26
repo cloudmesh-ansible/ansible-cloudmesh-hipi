@@ -1,0 +1,7 @@
+---
+
+- include: tasks/my-enable-root-access.yaml
+
+- include: tasks/my-gradle.yaml
+
+- include: tasks/my-hipi.yaml
