@@ -17,7 +17,8 @@
   - name: Create folder structure for my project, copy and replace if file exists from src to frontend node
     #shell: mkdir -p examples/pixelIntensity/src/main/java/org/hipi/examples
     file: path=/home/hadoop/hipi/examples/pixelIntensity/src/main/java/org/hipi/examples state=directory
-  - copy: src=build.gradle dest=/home/hadoop/hipi/examples/pixelIntensity/build.gradle owner=hadoop mode=0644
-  - copy: src=settings.gradle dest=/home/hadoop/hipi/settings.gradle owner=hadoop mode=0644
-  - copy: src=PixelIntensity.java dest=/home/hadoop/hipi/examples/pixelIntensity/src/main/java/org/hipi/examples/PixelIntensity.java owner=hadoop mode=0644
-  - copy: src=buildAndLaunch.sh dest=/home/hadoop/buildAndLaunch.sh owner=hadoop mode=0644
+  - copy: src=./../src/build.gradle dest=/home/hadoop/hipi/examples/pixelIntensity/build.gradle owner=hadoop mode=0644
+  - copy: src=./../src/settings.gradle dest=/home/hadoop/hipi/settings.gradle owner=hadoop mode=0644
+  - copy: src=./../src/PixelIntensity.java dest=/home/hadoop/hipi/examples/pixelIntensity/src/main/java/org/hipi/examples/PixelIntensity.java owner=hadoop mode=0644
+  - copy: src=./../src/buildAndLaunch.sh dest=/home/hadoop/buildAndLaunch.sh owner=hadoop mode=0644
+#  - script: ./../src/buildAndLaunch.sh

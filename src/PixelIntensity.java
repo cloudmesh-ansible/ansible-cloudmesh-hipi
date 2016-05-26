@@ -1,3 +1,6 @@
+// This code is obtained from 
+// http://hipi.cs.virginia.edu/gettingstarted.html
+
 package org.hipi.examples;
 
 import org.hipi.image.FloatImage;
