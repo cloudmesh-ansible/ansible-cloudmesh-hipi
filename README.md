@@ -8,7 +8,7 @@ Requirements
 
 * Account on a cloud
 
-* [Gradle](http://gradle.org/)
+* [Gradle](http://gradle.org/) for building project
 
 
 Dependencies
@@ -25,7 +25,7 @@ Prerequisite
 ===============
 
 Please make sure the following steps are carried out before installation 
-- 
+
 
 1. You're able to ssh into the cloud: india-futuresystems or chameleon 
 and join a project. 
@@ -48,7 +48,6 @@ encrypted\nTo connect as a different user, use -u <username>.",
        "unreachable": true
    }
    ```
-
 
    To start the agent:
 
@@ -119,41 +118,39 @@ Example Playbook
 3. Install gradle and hipi
 
       ```
-      ansible-playbook ./../ansible-cloudmesh-hipi/tasks/main.yml -i 
-inventory.txt
+      ansible-playbook ./../ansible-cloudmesh-hipi/tasks/main.yml -i inventory.txt
       ```
-
 List the inventory
-      
+      ```
       cat inventory.txt
-
+      ```
 or you can view the IPs using following commmand
 
-   ```
-   nova list | grep $USER-master0
-   ```
+      ```
+      nova list | grep $USER
+      ```
 
-For frontend node ip do
+4. For frontend node ip do
+      i. SSH into the frontend node
 
-    i. SSH into the frontend node 
+      ```
+      Eg: ssh -i ~/.ssh/id_rsa 129.114.110.90 -l hadoop
+      ```
+     
+      ii. Execute buildAndLaunch.sh which will 
       
-      ```
-         Eg: ssh -i ~/.ssh/id_rsa 129.114.110.90 -l hadoop
-      ```
-   ii. Execute build.sh which will 
-   
-   * download the data
-   * distribute it to hadoop 
-   * execute mapreduce
-   * print out the average pixel intensity in the images.
-   
+      * download the data
+      * distribute it to hadoop 
+      * execute mapreduce
+      * print out the average pixel intensity in the images.
+      
       ```
        bash
        sh buildAndLaunch.sh
       ```
 
-The shell script that you run would display the output on screen along 
-with details about the mapreduce job.
+The shell script that you run would display the output on screen 
+along with details about the mapreduce job.
 
 
 
