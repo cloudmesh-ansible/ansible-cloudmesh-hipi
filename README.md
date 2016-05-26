@@ -7,7 +7,7 @@ In this project, we are trying to solve a problem in image processing over a dis
 Software Stack
 ===============
 
-      Image processing Application
+      Image processing application
       Hipi Library
       Hadoop
       Virtual Machines
@@ -59,18 +59,21 @@ We've also noticied that if you are running on `india`, Ansible may be unable to
      -	‘create_floating_ip’: True
      ```
      
-9.  Clone this repository in the same home directory where you have cloned BDS
+      NOTE: Also Change remote_user from ubuntu to cc in ansible.cfg for Chameleon clould
+
+     
+9. Clone this repository in the same home directory where you have cloned BDS
 
    ```
    git clone https://github.com/cloudmesh/ansible-cloudmesh-hipi.git
    ```
 
-10. cd into ansible-cloudmesh-hipi/src
+10. Change directory to ansible-cloudmesh-hipi/src
 
 Installation
 ===============
 
-1. Run ``sh launch.sh`` and wait until completion. This will set up 3 Virtual Machines with Hadoop cluster as follows
+1. Run command ``sh launch.sh`` and wait until completion. This will set up 3 Virtual Machines with Hadoop cluster as follows
 
    i.   Frontend node: Master node in hadoop cluster.
    
@@ -90,12 +93,16 @@ The IP address allocated to the nodes can be found in big-data-stack/inventory.t
 
 
 2. This will also install gradle and hipi and build hipi module. The shell script calls an ansible playbook which is written in such a way that it takes care of maximum steps in itself and you don't have to run anything in separate. The ansible script will do the following changes in the frontend node.
+
+      i.   Give root acess
       
-   i.   Install prerequsite for gradle
+      ii.  Install prerequsite for gradle.
+      
+      iii.  Install gradle.
+
+      iv. Download and build hipi.
    
-   ii.  Download and build hipi
-   
-   iii. Copy the project files from src folder to the frontend node.
+      v. Copy the project files from src folder to the frontend node.
 
 
 3. Towards the end, please follow the following commands to execute our project on the deployed system -
@@ -105,7 +112,12 @@ The IP address allocated to the nodes can be found in big-data-stack/inventory.t
       ```
          Eg: ssh -i ~/.ssh/id_rsa 129.114.110.90 -l hadoop
       ```
-   ii. Execute build.sh which will download the data, distribute it to hadoop and print out the average pixel intensity in the images.
+   ii. Execute build.sh which will 
+   
+   * download the data
+   * distribute it to hadoop 
+   * execute mapreduce
+   * print out the average pixel intensity in the images.
    
       ```
        bash
