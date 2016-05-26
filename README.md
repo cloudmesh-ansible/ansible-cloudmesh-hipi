@@ -1,10 +1,17 @@
 Problem
 =========
 
-In this project, we are trying to solve a problem of image processing over a distributed environment. We have built an application that calculates the average pixel intensity in images that could be useful in normalization of images which is computationally intensive. 
+In this project, we are trying to solve a problem in image processing over a distributed environment. We have built an application that calculates the average pixel intensity in images.We are using [INRIA image dataset](http://pascal.inrialpes.fr/data/human/) for this project. Each image comprises of pixels, which are described in three dimensional RGB color space. So each pixel has three components R-Red, G-Green and B-Blue. Each image in INRIA dataset contains `594 X 720`pixels. So to describe an image we need `594 X 720 X 3` data points for R, G and B. We focus on calculating the average pixel intensity as it is necessary for normalization of images. Normalization is a technique where we subtract average pixel intensity from all pixel in all images to bring images to same scale. It is usually observed that after normalization machine learning algorithms perform better and faster. So we choose average pixel intensity as metric for evaluating distributed system performance.
 
 
-We are using [INRIA image dataset](http://pascal.inrialpes.fr/data/human/) for this project. Each image comprises of pixels, which are described in three dimensional RGB color space. So each pixel has three components R-Red, G-Green and B-Blue. Each image in INRIA dataset contains `594 X 720`pixels. So to describe an image we need `594 X 720 X 3` data points for R, G and B. We focus on calculating the average pixel intensity as it is necessary for normalization of images. Normalization is a technique where we subtract average pixel intensity from all pixel in all images to bring images to same scale. It is usually observed that after normalization machine learning algorithms perform better and faster. So we choose average pixel intensity as metric for evaluating distributed system performance.
+Software Stack
+===============
+
+      Image processing Application
+      Hipi Library
+      Hadoop
+      Virtual Machines
+
 
 Prerequisite
 ===============
@@ -52,24 +59,60 @@ We've also noticied that if you are running on `india`, Ansible may be unable to
      -	‘create_floating_ip’: True
      ```
      
-* Configure the BDS as per the cloud that you are using. Please follow the [link](https://github.com/futuresystems/class-admin-tools/blob/master/chameleon/big-data-stack.org>) to configure BDS for Chameleon
-* ``git clone https://github.com/cloudmesh/ansible-cloudmesh-hipi.git`` in the same home directory
-* cd into ansible-cloudmesh-hipi/src
+9.  Clone this repository in the same home directory where you have cloned BDS
+
+   ```
+   git clone https://github.com/cloudmesh/ansible-cloudmesh-hipi.git
+   ```
+
+10. cd into ansible-cloudmesh-hipi/src
 
 Installation
 ===============
 
-* run ``sh launch.sh`` and wait until completion. This will set up 3 VMs with Hadoop cluster. This will also install gradle and hipi and build hipi module. The shell script is taking care of an ansible playbook which is written in such a way that it takes care of maximum steps in itself and you don't have to run anything in separate . Towards the end, please follow the following commands to execute our project on the deployed system - ::
+1. Run ``sh launch.sh`` and wait until completion. This will set up 3 Virtual Machines with Hadoop cluster as follows
 
-    Please do following:
-    ssh -i ~/.ssh/id_rsa <master0-ip-address> -l hadoop
-    bash
-    sh buildAndLaunch.sh
+   i.   Frontend node: Master node in hadoop cluster.
+   
+   ii.  Data nodes: Where hdfs exists.
+   
+   iii. Zookeeper nodes: Where zookeeper coordination service for distributed applications exists.
+   
+   iv.  Hadoopnodes nodes: Where hadoop is installed.
+   
+   v.   Resourcemanager nodes: Slaves in hadoop.
 
-  To find ``<master0-ip-address>``, use ``nova list`` command or find it in big-data-stack/inventory.txt.
- 
-* The shell script that you run would display the output on screen along with details about the mapreduce job.
-NOTE: Please make sure that the floating ip is set to TRUE and execute on chameleon since it is tested to be running on it but Future systems had issues running the same.
+The IP address allocated to the nodes can be found in big-data-stack/inventory.txt or you can view the IPs using following commmand
+
+   ```
+   nova list | grep $USER-master0
+   ```
+
+
+2. This will also install gradle and hipi and build hipi module. The shell script calls an ansible playbook which is written in such a way that it takes care of maximum steps in itself and you don't have to run anything in separate. The ansible script will do the following changes in the frontend node.
+      
+   i.   Install prerequsite for gradle
+   
+   ii.  Download and build hipi
+   
+   iii. Copy the project files from src folder to the frontend node.
+
+
+3. Towards the end, please follow the following commands to execute our project on the deployed system -
+
+   i. SSH into the frontend node 
+      
+      ```
+         Eg: ssh -i ~/.ssh/id_rsa 129.114.110.90 -l hadoop
+      ```
+   ii. Execute build.sh which will download the data, distribute it to hadoop and print out the average pixel intensity in the images.
+   
+      ```
+       bash
+       sh buildAndLaunch.sh
+      ```
+
+The shell script that you run would display the output on screen along with details about the mapreduce job.
 
 
 License
