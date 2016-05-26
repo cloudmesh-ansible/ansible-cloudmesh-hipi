@@ -1,2 +1,4 @@
 ---
 # defaults file for ansible-cloudmesh-hipi
+gradle_repo: "ppa:cwchien/gradle"
+gradle_pkg: "gradle-ppa"
