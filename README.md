@@ -1,3 +1,26 @@
+'''
+.. warning::
+      if you are using the futuresystems cloud, you need to login on the india.futuresystems.org login node
+      next you need to load the openstack modulee with
+      on other systems you will need to install the python-novaclient and python-keystone modules
+      introduce subheadings for india.futuresystems.org and "other systems"
+      also its illogical to login into india to than go out on chameleon cloud
+      why not directly go out from your laptop to chameleon cloud its so much easier
+      Hrushikesh Dhumal
+      Yes, that is a very good point, as I was unaware of how open stack was installed on other system
+      please tacke a look at cloudmesh_client in github
+      Hrushikesh Dhumal
+      yes thats true, I just wanted to show two cloud options
+      this was introduced in class and even creates the inventory file for you from vms that you started on chameleon. All done dynamically
+      steps 6, 7, and 8, as well as 9 can be automatized
+      than stick with this for now
+      and dont yet use cloudmesh
+      I think that step example . ii is wrong and if vcl boot realy does not have any params it needs to be improved, so maybe we need to use cloudmesh client afterall
+      we must be able to place parameter that determines how many vms we boot
+      and than it generates automatically in some way the right association between the vms and the deployment needs
+      the reason this seems to be hardcoded is to make it trivial for studets, but we are beyond that
+'''
+
 Cloudmesh Ansible Hipi
 =========================
 
