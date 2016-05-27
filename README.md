@@ -65,8 +65,7 @@ repository using `git clone --recursive`. **IMPORTANT**: make sure you
 specify the `--recursive` option otherwise you will get errors.
 
      ```
-      git clone --recursive 
-https://github.com/futuresystems/big-data-stack.git
+      git clone --recursive https://github.com/futuresystems/big-data-stack.git
      ```
      
 7. Install the requirements using 
