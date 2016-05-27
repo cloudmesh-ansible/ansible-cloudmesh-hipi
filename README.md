@@ -54,9 +54,11 @@ Please make sure the following steps are carried out before installation
 and join a project. 
 2. Load open stack module
 
+      i. For india-futuresystems or chameleon cloud -
       ```
       module load openstack
       ```
+      ii. For other systems install the python-novaclient and python-keystone modules
       
 3. Make sure to start an ssh-agent so you don't need to retype you 
 passphrase multiple times.
