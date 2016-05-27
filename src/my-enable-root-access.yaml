@@ -1,7 +1,0 @@
---- 
-- name: Enable root login
-  hosts: hadoopnodes
-  remote_user: cc
-  tasks:
-    - name: Enable root login
-      shell: sudo cp ~/.ssh/authorized_keys /root/.ssh/
