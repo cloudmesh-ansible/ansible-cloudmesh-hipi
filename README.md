@@ -69,7 +69,12 @@ specify the `--recursive` option otherwise you will get errors.
 https://github.com/futuresystems/big-data-stack.git
      ```
      
-7. Install the requirements using `pip install -r requirements.txt`
+7. Install the requirements using 
+
+      ```
+      cd big-data-stack
+      pip install -r requirements.txt
+      ```
 
 8. Configure the BDS as per the cloud that you are using. Edit 
 `.cluster.py` to define the machines in the cluster.
@@ -131,6 +136,7 @@ or you can view the IPs using following commmand
       ```
 
 4. For frontend node ip do
+
       i. SSH into the frontend node
 
       ```
