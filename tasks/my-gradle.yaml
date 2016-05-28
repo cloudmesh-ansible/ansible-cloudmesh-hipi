@@ -4,4 +4,4 @@
   remote_user: root
   become: yes
   roles:
-    - gradle
+    - ./../roles/ansible-cloudmesh-gradle

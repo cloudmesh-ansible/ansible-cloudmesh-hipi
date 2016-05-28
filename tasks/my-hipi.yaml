@@ -12,8 +12,8 @@
     git: repo='https://github.com/uvagfx/hipi.git' dest='hipi' clone=yes
   - name: Change directory to hipi
     shell: cd hipi
-  - name: Build hipi
-    shell: gradle
+#  - name: Build hipi
+#    shell: gradle
   - name: Create folder structure for my project, copy and replace if file exists from src to frontend node
     #shell: mkdir -p examples/pixelIntensity/src/main/java/org/hipi/examples
     file: path=/home/hadoop/hipi/examples/pixelIntensity/src/main/java/org/hipi/examples state=directory
